@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Questionnaire</title>
+    <link type="text/css" href="/static/css/index.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,700&display=swap" rel="stylesheet"> 
+</head>
+<body>
+    <h1 class="yes">Questionnaire</h1>
+    <div class="questionContainer">
+    <form method="post" action="/">
+        <!-- <fieldset> -->
+            <input type="hidden" name="timestamp" value={{now}}>
+            <div class="formContainer">
+            {% for i in range %}
+            <p class="title">Question {{i + 1}}</p>
+                <div class="flexStart">
+                    <div>
+                    {% for _,w in top_words[i]%}
+                        <strong class="topWords">{{ w }}</strong>
+                    {% endfor %}
+                    </div>
+                </div>
+                <div class="primary">
+                    <p>Select label that <strong class="topWords">LEAST</strong> represents the above word list:</p>
+                {% for opt in multi_choice[i] %}
+                    <input type="radio" name={{i}} required value="{{opt[0]}}" >{{opt[0]}}<br>
+                {% endfor %}
+                </div>
+                <hr class="solid">
+            {% endfor %}
+            <input class="submit" type="submit" value="Submit"/>
+        </div>
+        <!-- </fieldset> -->
+    </form>
+</div>
+</body>
+</html>
