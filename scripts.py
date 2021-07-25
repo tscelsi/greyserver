@@ -1,6 +1,5 @@
 import pandas as pd
 
-
 def get_questions(hash=None, n=10):
     """
     We want to take an equal amount of questions from the tfidf, simple and intell baseline
