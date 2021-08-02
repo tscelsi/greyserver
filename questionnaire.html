@@ -8,17 +8,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,700&display=swap" rel="stylesheet"> 
 </head>
 <body>
+    <h1 class="yes">Questionnaire</h1>
     <div class="questionContainer">
-    <h1 class="yes">Welcome to the Greyroads questionnaire</h1>
-    <dl>
-        <dt>Introduction</dt>
-        <dd></dd>
-        <dt>Instructions</dt>
-        <dd>This questionnaire contains 30 multiple choice questions. In each question, you'll be presented with a list of words, as well as three possible labels for the list. A label is relevant if it describes the overall content of the word list accurately. Your task is to identify the \textit{LEAST} relevant label for the given list of words. An example question is below</dd>
-
-    </dl>
-    <div>
-    <p class="title">Question {{i + 1}}</p>
+    <form method="post" action="/">
+        <!-- <fieldset> -->
+            <input type="hidden" name="timestamp" value={{now}}>
+            <div class="formContainer">
+            {% for i in range %}
+            <p class="title">Question {{i + 1}}</p>
                 <div class="flexStart">
                     <div>
                     {% for _,w in top_words[i]%}
@@ -33,11 +30,9 @@
                 {% endfor %}
                 </div>
                 <hr class="solid">
-            </div>
-    
-    <form method="post" action="/">
-        <!-- <fieldset> -->
-            
+            {% endfor %}
+            <input class="submit" type="submit" value="Submit"/>
+        </div>
         <!-- </fieldset> -->
     </form>
 </div>

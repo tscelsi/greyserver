@@ -17,6 +17,15 @@ def send_css(filename):
 @route('/')
 @jinja2_view('index.html')
 def questionnaire():
+    # tmp save
+    now = time()
+    top_words = ['pig', 'cow', 'horse', 'milk', 'crops', 'chicken', 'tractor']
+    return {'range': range(len(top_words)), 'multi_choice': [('farm', 0),('animal', 0),('journalism', 0)], 'top_words': top_words, 'now': now}
+
+
+@route('/questionnaire')
+@jinja2_view('questionnaire.html')
+def questionnaire():
     questions = get_questions(None, 10)
     # tmp save
     now = time()
@@ -50,8 +59,4 @@ def submit_questionnaire():
     os.remove(f"tmp_{tmp_hash}.pickle")
     redirect("/thankyou")
 
-
-
-
-
-run(host='localhost', port=8080, debug=True)
+run(host='115.146.95.64', port=8888)
