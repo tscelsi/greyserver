@@ -22,6 +22,9 @@ def questionnaire():
     top_words = ['pig', 'cow', 'horse', 'milk', 'crops', 'chicken', 'tractor']
     return {'range': range(len(top_words)), 'multi_choice': [('farm', 0),('animal', 0),('journalism', 0)], 'top_words': top_words, 'now': now}
 
+@route('/', method='POST')
+def begin_questionnaire():
+    redirect("/questionnaire")
 
 @route('/questionnaire')
 @jinja2_view('questionnaire.html')
@@ -31,10 +34,11 @@ def questionnaire():
     now = time()
     questions.to_pickle(f"tmp_{now}.pickle")
     multi_choices = questions['multi_choice'].tolist()
-    top_words = questions['top_words'].tolist()
+    top_words = [[(x," ".join(y.split("_"))) for (x,y) in g] for g in questions['top_words'].tolist()]
+    print(top_words)
     return {'range': range(len(top_words)), 'multi_choice': multi_choices, 'top_words': top_words, 'index': [str(x) for x in questions.index.tolist()], 'now': now}
 
-@route('/', method='POST')
+@route('/questionnaire', method='POST')
 def submit_questionnaire():
     IS_INTRUDER = 0
     selected = []
@@ -59,4 +63,4 @@ def submit_questionnaire():
     os.remove(f"tmp_{tmp_hash}.pickle")
     redirect("/thankyou")
 
-run(host='115.146.95.64', port=8888)
+run()

@@ -9,36 +9,40 @@
 </head>
 <body>
     <div class="questionContainer">
-    <h1 class="yes">Welcome to the Greyroads questionnaire</h1>
+    <h1 class="yes">Welcome to the Greyroads "Intruder Selection" Questionnaire</h1>
     <dl>
-        <dt>Introduction</dt>
-        <dd></dd>
-        <dt>Instructions</dt>
-        <dd>This questionnaire contains 30 multiple choice questions. In each question, you'll be presented with a list of words, as well as three possible labels for the list. A label is relevant if it describes the overall content of the word list accurately. Your task is to identify the \textit{LEAST} relevant label for the given list of words. An example question is below</dd>
-
-    </dl>
-    <div>
-    <p class="title">Question {{i + 1}}</p>
+        <dt><h3>Instructions</h3></dt>
+        <dd>This questionnaire contains 30 multiple choice questions. 
+            In each question, you'll be presented with a list of phrases, as well as three labels. 
+            A label is relevant if it describes the overall content of the phrase list accurately. 
+            Your task is to identify the <strong>LEAST</strong> relevant label for the given list of phrases. 
+            An example question looks like:
+            <hr/>
+            <div>
+                <p class="title">Phrase List 1</p>
                 <div class="flexStart">
                     <div>
-                    {% for _,w in top_words[i]%}
-                        <strong class="topWords">{{ w }}</strong>
+                    {% for w in top_words%}
+                        <strong class="topWords">{{ w + ",  " }} </strong>
                     {% endfor %}
                     </div>
                 </div>
                 <div class="primary">
-                    <p>Select label that <strong class="topWords">LEAST</strong> represents the above word list:</p>
-                {% for opt in multi_choice[i] %}
-                    <input type="radio" name={{i}} required value="{{opt[0]}}" >{{opt[0]}}<br>
+                    <p>Select label that <strong class="topWords">LEAST</strong> represents the above phrase list:</p>
+                {% for opt in multi_choice %}
+                    <input type="radio" name={{1}} required value="{{opt[0]}}" >{{opt[0]}}<br>
                 {% endfor %}
                 </div>
-                <hr class="solid">
             </div>
+            <hr/>
+        </dd>
+        <dd>
+            Your job is to identify the <strong>least</strong> relevant label, which in the above example is journalism.
+        </dd>
+    </dl>
     
     <form method="post" action="/">
-        <!-- <fieldset> -->
-            
-        <!-- </fieldset> -->
+        <input class="submit" type="submit" value="Begin Questionnaire"/>
     </form>
 </div>
 </body>
