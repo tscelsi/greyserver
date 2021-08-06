@@ -63,4 +63,4 @@ def submit_questionnaire():
     os.remove(f"tmp_{tmp_hash}.pickle")
     redirect("/thankyou")
 
-run()
+run(host='localhost')
